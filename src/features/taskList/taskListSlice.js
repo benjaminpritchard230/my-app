@@ -9,8 +9,11 @@ export const taskListSlice = createSlice({
       const { payload } = param;
       state.value = [...state.value, payload];
     },
+    clear: (state) => {
+      state.value = [];
+    },
   },
 });
 const { actions, reducer } = taskListSlice;
-export const { save } = taskListSlice.actions;
+export const { save, clear } = taskListSlice.actions;
 export default taskListSlice.reducer;

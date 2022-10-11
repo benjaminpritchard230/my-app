@@ -1,16 +1,20 @@
 import "./App.css";
-import { TaskListDisplay } from "./features/taskList/taskListDisplay";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import TopAppBar from "./components/TopAppBar";
-import { useSelector, useDispatch } from "react-redux";
-import { save } from "./features/taskList/taskListSlice";
-import { useState, useEffect } from "react";
+
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+
+import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
+import FloatingActionButtons from "./components/FloatingActionButtons";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
 import TaskCard from "./components/TaskCard";
+import TaskDialog from "./components/TaskDialog";
+import { TaskListDisplay } from "./features/taskList/taskListDisplay";
+import TopAppBar from "./components/TopAppBar";
+import { save } from "./features/taskList/taskListSlice";
+import { styled } from "@mui/material/styles";
 
 function App() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -25,6 +29,7 @@ function App() {
   const dispatch = useDispatch();
 
   const [theme, setTheme] = useState("light");
+  const [taskDialog, setTaskDialog] = useState(false);
 
   const lightTheme = createTheme({
     palette: {
@@ -65,6 +70,11 @@ function App() {
           {displayTaskCards()}
         </Grid>
       </Box>
+      <FloatingActionButtons
+        taskDialog={taskDialog}
+        setTaskDialog={setTaskDialog}
+      />
+      <TaskDialog taskDialog={taskDialog} setTaskDialog={setTaskDialog} />
     </ThemeProvider>
   );
 }
