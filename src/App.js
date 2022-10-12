@@ -66,7 +66,7 @@ function App() {
     const filtered = taskList.filter((task) => {
       return task.name.toLowerCase().includes(filterText.toLowerCase());
     });
-    console.log(filtered);
+    // console.log(filtered);
     setFilteredTaskList(filtered);
   }, [filterText, taskList]);
 

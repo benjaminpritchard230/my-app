@@ -8,11 +8,24 @@ import IconButton from "@mui/material/IconButton";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useSelector, useDispatch } from "react-redux";
-import { save, clear } from "../features/taskList/taskListSlice";
+import {
+  save,
+  clear,
+  doneDelete,
+  update,
+} from "../features/taskList/taskListSlice";
 
 export default function TopAppBar({ theme, setTheme }) {
   const taskList = useSelector((state) => state.taskList.value);
   const dispatch = useDispatch();
+
+  const handleDeleteDoneClick = () => {
+    let newArray = taskList;
+    newArray.filter((task) => {
+      return task.done === false;
+    });
+    dispatch(update(newArray));
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -40,7 +53,7 @@ export default function TopAppBar({ theme, setTheme }) {
 
           <Button
             onClick={() => {
-              console.log(taskList);
+              handleDeleteDoneClick();
             }}
             color="inherit"
           >

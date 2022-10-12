@@ -22,6 +22,8 @@ export default function TaskDialog({ taskDialog, setTaskDialog }) {
     dispatch(
       save({
         name: name,
+        date: id,
+        id: id,
       })
     );
 

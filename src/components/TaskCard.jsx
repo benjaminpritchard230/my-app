@@ -9,15 +9,7 @@ import { useState } from "react";
 import { Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
-
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
+import TaskCardButtons from "./TaskCardButtons";
 
 export default function TaskCard({ task }) {
   const [editText, setEditText] = useState("");
@@ -34,7 +26,9 @@ export default function TaskCard({ task }) {
         <Card sx={{ minWidth: 275, minHeight: 150 }}>
           <CardContent>
             <Typography variant={"h5"}>{task.name}</Typography>
+            <Typography variant={"h5"}>{task.id}</Typography>
           </CardContent>
+          <TaskCardButtons task={task} />
           <CardActions></CardActions>
         </Card>
       </Item>
