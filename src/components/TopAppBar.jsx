@@ -39,7 +39,9 @@ export default function TopAppBar({ theme, setTheme }) {
           )}
 
           <Button
-            // onClick={}
+            onClick={() => {
+              console.log(taskList);
+            }}
             color="inherit"
           >
             Delete Done

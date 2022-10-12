@@ -2,7 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export const taskListSlice = createSlice({
   name: "taskList",
   initialState: {
-    value: ["ben", "harry"],
+    value: [
+      {
+        name: "ben",
+      },
+      {
+        name: "harry",
+      },
+    ],
   },
   reducers: {
     save: (state, param) => {

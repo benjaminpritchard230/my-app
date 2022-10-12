@@ -53,13 +53,7 @@ function App() {
   const displayFilteredTaskCards = () => {
     let cardsArray = [];
     filteredTaskList.forEach((task, index) => {
-      cardsArray.push(
-        <Grid xs={12} md={6} lg={4}>
-          <Item>
-            <TaskCard task={task} />
-          </Item>
-        </Grid>
-      );
+      cardsArray.push(<TaskCard task={task} key={index} />);
     });
     return cardsArray;
   };
@@ -70,18 +64,18 @@ function App() {
 
   useEffect(() => {
     const filtered = taskList.filter((task) => {
-      return task.toLowerCase().includes(filterText.toLowerCase());
+      return task.name.toLowerCase().includes(filterText.toLowerCase());
     });
     console.log(filtered);
     setFilteredTaskList(filtered);
-  }, [filterText]);
+  }, [filterText, taskList]);
 
   return (
     <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
       <CssBaseline />
       <Box sx={{ flexGrow: 1, minWidth: 1 }} key="1">
         <Grid container spacing={0}>
-          <Grid xs={12}>
+          <Grid item xs={12}>
             <TopAppBar theme={theme} setTheme={setTheme} />
           </Grid>
           {displayFilteredTaskCards()}

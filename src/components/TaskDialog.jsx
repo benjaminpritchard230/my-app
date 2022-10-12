@@ -17,9 +17,13 @@ export default function TaskDialog({ taskDialog, setTaskDialog }) {
   const date = new Date().toISOString().slice(0, 10);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
+    let name = e.target[0].value;
 
-    dispatch(save(e.target[0].value));
+    dispatch(
+      save({
+        name: name,
+      })
+    );
 
     setTaskDialog(false);
   };
