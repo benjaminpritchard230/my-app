@@ -4,7 +4,14 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
-export default function FloatingActionButtons({ taskDialog, setTaskDialog }) {
+export default function FloatingActionButtons({
+  taskDialog,
+  setTaskDialog,
+  filterDialog,
+  setFilterDialog,
+  filterText,
+  setFilterText,
+}) {
   const style = {
     margin: 0,
     top: "auto",
@@ -14,7 +21,6 @@ export default function FloatingActionButtons({ taskDialog, setTaskDialog }) {
     position: "fixed",
   };
 
-  const filterText = "";
   return (
     <Box sx={{ "& > :not(style)": { m: 1 } }} style={style}>
       <Fab
@@ -27,11 +33,23 @@ export default function FloatingActionButtons({ taskDialog, setTaskDialog }) {
         <AddIcon />
       </Fab>
       {filterText.length === 0 ? (
-        <Fab aria-label="filter">
+        <Fab
+          aria-label="filter"
+          onClick={() => {
+            setFilterDialog(true);
+            console.log("clicked");
+          }}
+        >
           <FilterAltIcon />
         </Fab>
       ) : (
-        <Fab aria-label="clear-filter">
+        <Fab
+          aria-label="clear-filter"
+          onClick={() => {
+            setFilterText("");
+            console.log("clicked");
+          }}
+        >
           <FilterAltOffIcon />
         </Fab>
       )}

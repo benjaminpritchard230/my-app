@@ -15,6 +15,7 @@ import { TaskListDisplay } from "./features/taskList/taskListDisplay";
 import TopAppBar from "./components/TopAppBar";
 import { save } from "./features/taskList/taskListSlice";
 import { styled } from "@mui/material/styles";
+import FilterDialog from "./components/FilterDialog";
 
 function App() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -30,6 +31,10 @@ function App() {
 
   const [theme, setTheme] = useState("light");
   const [taskDialog, setTaskDialog] = useState(false);
+  const [filterText, setFilterText] = useState("");
+  const [filterDialog, setFilterDialog] = useState(false);
+
+  const [filteredTaskList, setFilteredTaskList] = useState([]);
 
   const lightTheme = createTheme({
     palette: {
@@ -45,9 +50,9 @@ function App() {
     },
   });
 
-  const displayTaskCards = () => {
+  const displayFilteredTaskCards = () => {
     let cardsArray = [];
-    taskList.forEach((task, index) => {
+    filteredTaskList.forEach((task, index) => {
       cardsArray.push(
         <Grid xs={12} md={6} lg={4}>
           <Item>
@@ -59,6 +64,18 @@ function App() {
     return cardsArray;
   };
 
+  useEffect(() => {
+    console.log(filterText, "filter text");
+  }, [filterText]);
+
+  useEffect(() => {
+    const filtered = taskList.filter((task) => {
+      return task.toLowerCase().includes(filterText.toLowerCase());
+    });
+    console.log(filtered);
+    setFilteredTaskList(filtered);
+  }, [filterText]);
+
   return (
     <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
       <CssBaseline />
@@ -67,14 +84,24 @@ function App() {
           <Grid xs={12}>
             <TopAppBar theme={theme} setTheme={setTheme} />
           </Grid>
-          {displayTaskCards()}
+          {displayFilteredTaskCards()}
         </Grid>
       </Box>
       <FloatingActionButtons
         taskDialog={taskDialog}
         setTaskDialog={setTaskDialog}
+        filterDialog={filterDialog}
+        setFilterDialog={setFilterDialog}
+        filterText={filterText}
+        setFilterText={setFilterText}
       />
       <TaskDialog taskDialog={taskDialog} setTaskDialog={setTaskDialog} />
+      <FilterDialog
+        filterDialog={filterDialog}
+        setFilterDialog={setFilterDialog}
+        filterText={filterText}
+        setFilterText={setFilterText}
+      />
     </ThemeProvider>
   );
 }
