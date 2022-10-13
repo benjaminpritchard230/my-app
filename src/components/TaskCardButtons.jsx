@@ -44,7 +44,7 @@ const TaskCardButtons = ({ task, editDialog, setEditDialog }) => {
           />
         </Avatar>
       </IconButton>
-      <IconButton
+      {/* <IconButton
         onClick={() => {
           handleEditClick();
         }}
@@ -52,7 +52,7 @@ const TaskCardButtons = ({ task, editDialog, setEditDialog }) => {
         <Avatar>
           <EditIcon sx={{ "&:hover": { color: "yellow" } }} />
         </Avatar>
-      </IconButton>
+      </IconButton> */}
       <IconButton
         onClick={() => {
           handleDeleteClick();
