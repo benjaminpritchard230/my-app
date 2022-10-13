@@ -12,7 +12,6 @@ import Paper from "@mui/material/Paper";
 import TaskCardButtons from "./TaskCardButtons";
 import EditDialog from "./EditDialog";
 export default function TaskCard({ task, editDialog, setEditDialog }) {
-  const [editText, setEditText] = useState("");
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -33,6 +32,14 @@ export default function TaskCard({ task, editDialog, setEditDialog }) {
             editDialog={editDialog}
             setEditDialog={setEditDialog}
           />
+          |
+          <Button
+            onClick={() => {
+              console.log(task);
+            }}
+          >
+            click
+          </Button>
           <CardActions></CardActions>
         </Card>
       </Item>

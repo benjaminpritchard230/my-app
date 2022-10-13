@@ -1,10 +1,6 @@
 import * as React from "react";
-import { green, pink } from "@mui/material/colors";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
-import FolderIcon from "@mui/icons-material/Folder";
-import PageviewIcon from "@mui/icons-material/Pageview";
-import AssignmentIcon from "@mui/icons-material/Assignment";
 import DoneIcon from "@mui/icons-material/Done";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
@@ -17,14 +13,6 @@ const TaskCardButtons = ({ task, editDialog, setEditDialog }) => {
   const taskList = useSelector((state) => state.taskList.value);
   const dispatch = useDispatch();
   const [editText, setEditText] = useState("");
-
-  //   const handleDeleteClick = () => {
-  //     setTaskList((current) =>
-  //       current.filter((toDo) => {
-  //         return toDo.id !== task.id;
-  //       })
-  //     );
-  //   };
 
   const handleDoneClick = () => {
     dispatch(done(task.id));
@@ -74,6 +62,12 @@ const TaskCardButtons = ({ task, editDialog, setEditDialog }) => {
           <DeleteIcon sx={{ "&:hover": { color: "red" } }} />
         </Avatar>
       </IconButton>
+      <EditDialog
+        task={task}
+        editDialog={editDialog}
+        setEditDialog={setEditDialog}
+        key={task.id}
+      />
     </Stack>
   );
 };
