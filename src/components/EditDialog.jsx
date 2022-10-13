@@ -9,18 +9,20 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useSelector, useDispatch } from "react-redux";
 import { save, done, remove, edit } from "../features/taskList/taskListSlice";
 
-export default function EditDialog({ task, editDialog, setEditDialog }) {
+export default function EditDialog({
+  task,
+  editDialog,
+  setEditDialog,
+  setEditText,
+}) {
   // const taskList = useSelector((state) => state.taskList.value);
   const dispatch = useDispatch();
   const handleCancelClick = () => {
     setEditDialog(false);
   };
-  const handleSubmit = () => {
-    // e.preventDefault();
-    console.log(task.name);
-    console.log(task.id);
-
-    dispatch(done(task.id));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setEditText(e.target[0].value);
     setEditDialog(false);
   };
   return (
@@ -33,7 +35,7 @@ export default function EditDialog({ task, editDialog, setEditDialog }) {
             <TextField
               autoFocus
               margin="dense"
-              id={task.id}
+              // id={task.id}
               label="Filter tasks"
               type="text"
               fullWidth

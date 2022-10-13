@@ -31,7 +31,7 @@ export const taskListSlice = createSlice({
       const { payload } = param;
       const index = state.value.findIndex((task) => task.id === payload);
       const newArray = [...state.value];
-      newArray[index].done = !newArray[index].done;
+      newArray[index].name = "harry";
       state.value = newArray;
     },
     remove: (state, param) => {

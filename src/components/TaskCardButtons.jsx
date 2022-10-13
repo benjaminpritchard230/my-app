@@ -62,12 +62,6 @@ const TaskCardButtons = ({ task, editDialog, setEditDialog }) => {
           <DeleteIcon sx={{ "&:hover": { color: "red" } }} />
         </Avatar>
       </IconButton>
-      <EditDialog
-        task={task}
-        editDialog={editDialog}
-        setEditDialog={setEditDialog}
-        key={task.id}
-      />
     </Stack>
   );
 };
