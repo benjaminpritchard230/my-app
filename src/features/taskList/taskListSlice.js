@@ -39,9 +39,14 @@ export const taskListSlice = createSlice({
     clear: (state) => {
       state.value = [];
     },
-    doneDelete: (state) => {
-      let newArray = [...state.value];
-      state.value = newArray.filter((item) => item.done === false);
+    doneDelete: (state, param) => {
+      const { payload } = param;
+      // const index = state.value.findIndex((task) => task.id === payload); //finding index of the item
+      // let newArray = [...state.value]; //making a new array
+      // // newArray.splice(index, index); //changing value in the new array
+      // newArray.splice(index, 1);
+      state.value = payload;
+      // console.log(newArray[index].name);
     },
     update: (state, param) => {
       const { payload } = param;

@@ -24,6 +24,7 @@ export default function TaskDialog({ taskDialog, setTaskDialog }) {
         name: name,
         date: id,
         id: id,
+        done: false,
       })
     );
 

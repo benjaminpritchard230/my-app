@@ -10,8 +10,8 @@ import { Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import TaskCardButtons from "./TaskCardButtons";
-
-export default function TaskCard({ task }) {
+import EditDialog from "./EditDialog";
+export default function TaskCard({ task, editDialog, setEditDialog }) {
   const [editText, setEditText] = useState("");
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -28,7 +28,11 @@ export default function TaskCard({ task }) {
             <Typography variant={"h5"}>{task.name}</Typography>
             <Typography variant={"h5"}>{task.id}</Typography>
           </CardContent>
-          <TaskCardButtons task={task} />
+          <TaskCardButtons
+            task={task}
+            editDialog={editDialog}
+            setEditDialog={setEditDialog}
+          />
           <CardActions></CardActions>
         </Card>
       </Item>

@@ -16,6 +16,7 @@ import TopAppBar from "./components/TopAppBar";
 import { save } from "./features/taskList/taskListSlice";
 import { styled } from "@mui/material/styles";
 import FilterDialog from "./components/FilterDialog";
+import EditDialog from "./components/EditDialog";
 
 function App() {
   const Item = styled(Paper)(({ theme }) => ({
@@ -33,6 +34,7 @@ function App() {
   const [taskDialog, setTaskDialog] = useState(false);
   const [filterText, setFilterText] = useState("");
   const [filterDialog, setFilterDialog] = useState(false);
+  const [editDialog, setEditDialog] = useState(false);
 
   const [filteredTaskList, setFilteredTaskList] = useState([]);
 
@@ -53,7 +55,14 @@ function App() {
   const displayFilteredTaskCards = () => {
     let cardsArray = [];
     filteredTaskList.forEach((task, index) => {
-      cardsArray.push(<TaskCard task={task} key={index} />);
+      cardsArray.push(
+        <TaskCard
+          task={task}
+          key={index}
+          editDialog={editDialog}
+          setEditDialog={setEditDialog}
+        />
+      );
     });
     return cardsArray;
   };
@@ -96,6 +105,7 @@ function App() {
         filterText={filterText}
         setFilterText={setFilterText}
       />
+      <EditDialog editDialog={editDialog} setEditDialog={setEditDialog} />
     </ThemeProvider>
   );
 }

@@ -11,10 +11,13 @@ import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import { useSelector, useDispatch } from "react-redux";
 import { save, done, remove } from "../features/taskList/taskListSlice";
-
-const TaskCardButtons = ({ task, openEdit, setOpenEdit }) => {
+import { useState, useEffect } from "react";
+import EditDialog from "./EditDialog";
+const TaskCardButtons = ({ task, editDialog, setEditDialog }) => {
   const taskList = useSelector((state) => state.taskList.value);
   const dispatch = useDispatch();
+  const [editText, setEditText] = useState("");
+
   //   const handleDeleteClick = () => {
   //     setTaskList((current) =>
   //       current.filter((toDo) => {
@@ -30,9 +33,9 @@ const TaskCardButtons = ({ task, openEdit, setOpenEdit }) => {
   const handleDeleteClick = () => {
     dispatch(remove(task.id));
   };
-  //   const handleEditClick = () => {
-  //     setOpenEdit(true);
-  //   };
+  const handleEditClick = () => {
+    setEditDialog(true);
+  };
 
   return (
     <Stack
@@ -55,7 +58,7 @@ const TaskCardButtons = ({ task, openEdit, setOpenEdit }) => {
       </IconButton>
       <IconButton
         onClick={() => {
-          //   handleEditClick();
+          handleEditClick();
         }}
       >
         <Avatar>

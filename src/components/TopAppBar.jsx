@@ -14,17 +14,31 @@ import {
   doneDelete,
   update,
 } from "../features/taskList/taskListSlice";
+import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function TopAppBar({ theme, setTheme }) {
   const taskList = useSelector((state) => state.taskList.value);
   const dispatch = useDispatch();
+  const [filteredList, setFilteredList] = useState([]);
+  const id = uuidv4();
+
+  function randomString(length) {
+    var result = "";
+    var characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
 
   const handleDeleteDoneClick = () => {
-    let newArray = taskList;
-    newArray.filter((task) => {
-      return task.done === false;
+    let newArray = taskList.filter((current) => {
+      return current.done === false;
     });
-    dispatch(update(newArray));
+    dispatch(doneDelete(newArray));
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -66,6 +80,21 @@ export default function TopAppBar({ theme, setTheme }) {
             color="inherit"
           >
             Delete all
+          </Button>
+          <Button
+            onClick={() => {
+              dispatch(
+                save({
+                  name: randomString(10),
+                  id: id,
+                  done: false,
+                })
+              );
+              console.log(taskList);
+            }}
+            color="inherit"
+          >
+            Create task
           </Button>
         </Toolbar>
       </AppBar>
