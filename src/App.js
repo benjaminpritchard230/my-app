@@ -58,7 +58,7 @@ function App() {
       cardsArray.push(
         <TaskCard
           task={task}
-          key={task.id}
+          key={index}
           editDialog={editDialog}
           setEditDialog={setEditDialog}
         />
@@ -105,6 +105,7 @@ function App() {
         filterText={filterText}
         setFilterText={setFilterText}
       />
+      <EditDialog editDialog={editDialog} setEditDialog={setEditDialog} />
     </ThemeProvider>
   );
 }

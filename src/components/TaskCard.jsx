@@ -20,6 +20,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useSelector, useDispatch } from "react-redux";
 import { save, done, remove, edit } from "../features/taskList/taskListSlice";
 export default function TaskCard({ task, editDialog, setEditDialog }) {
+  const [editText, setEditText] = useState("");
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -63,6 +64,7 @@ export default function TaskCard({ task, editDialog, setEditDialog }) {
             editDialog={editDialog}
             setEditDialog={setEditDialog}
           />
+<<<<<<< HEAD
           |
           <Button
             onClick={() => {
@@ -73,6 +75,8 @@ export default function TaskCard({ task, editDialog, setEditDialog }) {
           >
             click
           </Button>
+=======
+>>>>>>> parent of da62334 (Baffled)
           <CardActions></CardActions>
         </Card>
       </Item>

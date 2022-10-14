@@ -6,9 +6,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { useSelector, useDispatch } from "react-redux";
-import { save, done, remove, edit } from "../features/taskList/taskListSlice";
 
+<<<<<<< HEAD
 export default function EditDialog({
   task,
   editDialog,
@@ -25,17 +24,24 @@ export default function EditDialog({
     setEditText(e.target[0].value);
     setEditDialog(false);
   };
+=======
+export default function EditDialog({ editDialog, setEditDialog }) {
+>>>>>>> parent of da62334 (Baffled)
   return (
     <div>
       <Dialog open={editDialog}>
-        <form onSubmit={handleSubmit}>
-          <DialogTitle>Edit task name</DialogTitle>
+        <form>
+          <DialogTitle>Filter tasks by name</DialogTitle>
           <DialogContent>
             <DialogContentText></DialogContentText>
             <TextField
               autoFocus
               margin="dense"
+<<<<<<< HEAD
               // id={task.id}
+=======
+              id="name"
+>>>>>>> parent of da62334 (Baffled)
               label="Filter tasks"
               type="text"
               fullWidth
@@ -44,20 +50,13 @@ export default function EditDialog({
           </DialogContent>
           <DialogActions>
             <Button
-              onClick={() => {
-                handleCancelClick();
-              }}
+            //   onClick={() => {
+            //     handleCancel();
+            //   }}
             >
               Cancel
             </Button>
-            <Button type="submit">Edit name</Button>
-            <Button
-              onClick={() => {
-                dispatch(done(task.id));
-              }}
-            >
-              try this
-            </Button>
+            <Button type="submit">Filter tasks</Button>
           </DialogActions>
         </form>
       </Dialog>
